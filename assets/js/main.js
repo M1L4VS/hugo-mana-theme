@@ -59,6 +59,70 @@
   const searchModalBackdrop = document.getElementById('search-modal-backdrop');
   const searchModalClose = document.getElementById('search-modal-close');
   const searchInput = document.getElementById('search-input');
+  const searchResults = document.getElementById('search-results');
+  
+  let searchIndex = [];
+  let searchTimeout = null;
+  
+  // Load search index
+  async function loadSearchIndex() {
+    try {
+      const response = await fetch('/index.json');
+      if (response.ok) {
+        searchIndex = await response.json();
+      } else {
+        console.error('Failed to load search index:', response.status);
+      }
+    } catch (error) {
+      console.error('Failed to load search index:', error);
+    }
+  }
+  
+  // Perform search
+  function performSearch(query) {
+    if (!searchResults) return;
+    
+    if (!query || query.length < 2) {
+      searchResults.innerHTML = '';
+      return;
+    }
+    
+    const queryLower = query.toLowerCase().trim();
+    const seenPermalinks = new Set();
+    const results = searchIndex.filter(item => {
+      if (!item || !item.permalink) return false;
+      
+      // Deduplicate by permalink
+      if (seenPermalinks.has(item.permalink)) return false;
+      seenPermalinks.add(item.permalink);
+      
+      const titleMatch = item.title?.toLowerCase().includes(queryLower);
+      const summaryMatch = item.summary?.toLowerCase().includes(queryLower);
+      const contentMatch = item.content?.toLowerCase().includes(queryLower);
+      const tagsMatch = item.tags?.some(tag => tag.toLowerCase().includes(queryLower));
+      return titleMatch || summaryMatch || contentMatch || tagsMatch;
+    }).slice(0, 10); // Limit to 10 results
+    
+    if (results.length === 0) {
+      searchResults.innerHTML = '<div class="search-result-empty">No results found</div>';
+      return;
+    }
+    
+    searchResults.innerHTML = results.map(item => `
+      <a href="${item.permalink}" class="search-result-item">
+        <div class="search-result-title">${highlightMatch(item.title || '', query)}</div>
+        ${item.summary ? `<div class="search-result-summary">${highlightMatch(item.summary.substring(0, 150), query)}...</div>` : ''}
+        ${item.date ? `<div class="search-result-date">${item.date}</div>` : ''}
+      </a>
+    `).join('');
+  }
+  
+  // Highlight matching text
+  function highlightMatch(text, query) {
+    if (!text || !query) return text;
+    const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+    return text.replace(regex, '<mark>$1</mark>');
+  }
   
   function openSearchModal() {
     if (searchModal) {
@@ -74,8 +138,26 @@
     if (searchModal) {
       searchModal.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
-      searchInput.value = '';
+      if (searchInput) {
+        searchInput.value = '';
+      }
+      if (searchResults) {
+        searchResults.innerHTML = '';
+      }
     }
+  }
+  
+  // Handle search input
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      const query = e.target.value;
+      
+      // Debounce search
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(() => {
+        performSearch(query);
+      }, 200);
+    });
   }
   
   // Open modal
@@ -98,6 +180,9 @@
   searchModal?.querySelector('.search-modal-container')?.addEventListener('click', (e) => {
     e.stopPropagation();
   });
+  
+  // Initialize - load search index
+  loadSearchIndex();
 })();
 
 // Scroll to Top

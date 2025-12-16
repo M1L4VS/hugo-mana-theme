@@ -23,7 +23,9 @@
 <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink }}">
 {{ end }}
 
-{{ if .OutputFormats.Get "RSS" }}
-<link rel="alternate" type="application/rss+xml" href="{{ (.Site.Home.OutputFormats.Get "RSS").RelPermalink }}" title="{{ site.Title }}">
+{{ with .Site.Home }}
+  {{ with .OutputFormats.Get "RSS" }}
+  <link rel="alternate" type="application/rss+xml" href="{{ .RelPermalink }}" title="{{ site.Title }}">
+  {{ end }}
 {{ end }}
 

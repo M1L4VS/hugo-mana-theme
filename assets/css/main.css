@@ -1219,7 +1219,7 @@ main {
 .search-result-title mark {
   background-color: var(--accent-primary);
   color: white;
-  padding: 0.125rem 0.25rem;
+  padding: 0;
   border-radius: 0.125rem;
 }
 
@@ -1233,7 +1233,7 @@ main {
 .search-result-summary mark {
   background-color: rgba(139, 92, 246, 0.2);
   color: var(--accent-primary);
-  padding: 0.125rem 0.25rem;
+  padding: 0;
   border-radius: 0.125rem;
 }
 

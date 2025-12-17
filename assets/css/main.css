@@ -1956,20 +1956,6 @@ main {
     margin-left: 0;
   }
 
-  .scroll-to-top,
-  .buy-me-coffee {
-    width: 45px;
-    height: 45px;
-    right: var(--spacing-md);
-  }
-
-  .scroll-to-top {
-    bottom: calc(var(--spacing-md) + 55px);
-  }
-
-  .buy-me-coffee {
-    bottom: var(--spacing-md);
-  }
 }
 
 @media (max-width: 480px) {

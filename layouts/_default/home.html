@@ -8,16 +8,16 @@
             <span class="hero-title-line1">MANA'S GUIDE</span>
             <span class="hero-title-line2">TO EVERYTHING</span>
           </h1>
-          {{ if site.Params.description }}
+        {{ if site.Params.description }}
           <p class="hero-subtitle">&gt; {{ site.Params.description }}</p>
           {{ else if site.Description }}
           <p class="hero-subtitle">&gt; {{ site.Description }}</p>
-          {{ end }}
-          {{ if site.Params.social }}
+        {{ end }}
+        {{ if site.Params.social }}
           <div class="hero-social">
-            {{ partial "social-links.html" . }}
-          </div>
-          {{ end }}
+          {{ partial "social-links.html" . }}
+        </div>
+        {{ end }}
         </div>
         <div class="hero-image">
           <img src="/favicon/logo-transparent/android-chrome-512x512.png" alt="{{ site.Title }}" class="hero-logo">

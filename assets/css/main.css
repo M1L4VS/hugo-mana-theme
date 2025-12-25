@@ -5,6 +5,12 @@ body {
   overflow-x: hidden;
 }
 
+/* Code elements use monospace font */
+code,
+pre {
+  font-family: var(--font-mono);
+}
+
 /* Common Utility Classes */
 /* Glassmorphism effect - reusable pattern */
 .glass-effect {
@@ -798,6 +804,7 @@ main {
 }
 
 .post-content-main pre {
+  font-family: var(--font-mono);
   overflow-x: auto;
   max-width: 100%;
   word-break: normal;
@@ -806,6 +813,7 @@ main {
 }
 
 .post-content-main code {
+  font-family: var(--font-mono);
   word-wrap: break-word;
   overflow-wrap: break-word;
 }

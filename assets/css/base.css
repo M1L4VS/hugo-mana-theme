@@ -1,4 +1,4 @@
-/* Theme variables are loaded separately in head */
+/* Base Styles - Reset, Body, Code, Utilities */
 
 /* Prevent horizontal scrolling */
 body {
@@ -52,10 +52,3 @@ pre {
   height: var(--icon-lg);
 }
 
-/* Main Content */
-main {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: var(--spacing-xl) var(--spacing-lg);
-  min-height: calc(100vh - 200px);
-}

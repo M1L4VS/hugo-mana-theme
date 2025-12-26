@@ -71,6 +71,11 @@
   position: relative;
 }
 
+/* Reduce fade effect in light mode */
+[data-theme="light"] .code-block-wrapper.collapsed .code-block-content {
+  opacity: 0.9;
+}
+
 .code-block-wrapper.collapsed .code-block-content::after {
   content: '';
   position: absolute;

@@ -1,11 +1,11 @@
 name = "Mana"
 license = "MIT"
-licenselink = "https://github.com/Livour/hugo-mana-theme/blob/main/LICENSE"
+licenselink = "https://github.com/M1L4VS/hugo-mana-theme/blob/main/LICENSE"
 description = "Futuristic theme featuring a dark theme, clean aesthetics, and modern functionality."
-homepage = "https://github.com/Livour/hugo-mana-theme"
+homepage = "https://github.com/M1L4VS/hugo-mana-theme"
 demosite = "https://managuide.blog/"
 
-tags = ["blog", "responsive", "personal", "dark", "minimal", "modern", "code-highlighting", "light", "dark mode", "popular", "light mode]
+tags = ["blog", "responsive", "personal", "dark", "minimal", "modern", "code-highlighting", "light", "dark mode", "popular", "light mode"]
 features = ["responsive", "dark mode", "light mode", "blog", "social icons", "code highlighting", "clean design", "sticky header", "search", "table of contents", "syntax highlighting", "post filtering", "tag search", "archive pages"]
 
 [author]

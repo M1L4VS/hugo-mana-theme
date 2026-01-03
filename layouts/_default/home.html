@@ -16,8 +16,6 @@
           </h1>
         {{ if site.Params.description }}
           <p class="hero-subtitle">&gt; {{ site.Params.description }}</p>
-          {{ else if site.Description }}
-          <p class="hero-subtitle">&gt; {{ site.Description }}</p>
         {{ end }}
         {{ if site.Params.social }}
           <div class="hero-social">
@@ -26,7 +24,9 @@
         {{ end }}
         </div>
         <div class="hero-image">
-          <img src="/favicon/logo-transparent/android-chrome-512x512.png" alt="{{ site.Title }}" class="hero-logo">
+          {{ if site.Params.avatar.url }}
+          <img src="{{ site.Params.avatar.url }}" alt="{{ site.Title }}" class="hero-logo">
+          {{ end }}
         </div>
       </div>
     </div>

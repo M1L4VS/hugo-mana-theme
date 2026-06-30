@@ -3,7 +3,7 @@
   {{ $titleSlug := .Title | urlize }}
   {{ $imageExtensions := slice ".png" ".jpg" ".jpeg" ".webp" }}
   {{ range $imageExtensions }}
-    {{ $potentialImage := printf "/images/%s%s" $titleSlug . }}
+    {{ $potentialImage := printf "images/%s%s" $titleSlug . }}
     {{ $staticPath := printf "static/images/%s%s" $titleSlug . }}
     {{ if (fileExists $staticPath) }}
       {{ $image = $potentialImage }}

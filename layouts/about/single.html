@@ -7,7 +7,7 @@
       </h1>
       
       {{ if site.Params.avatar.url }}
-      <img src="{{ site.Params.avatar.url }}" alt="{{ site.Title }}" class="about-page-avatar">
+      <img src="{{ site.Params.avatar.url | relURL }}" alt="{{ site.Title }}" class="about-page-avatar">
       {{ end }}
       
       {{ if site.Params.description }}

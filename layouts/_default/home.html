@@ -25,7 +25,7 @@
         </div>
         <div class="hero-image">
           {{ if site.Params.avatar.url }}
-          <img src="{{ site.Params.avatar.url }}" alt="{{ site.Title }}" class="hero-logo">
+          <img src="{{ site.Params.avatar.url | relURL }}" alt="{{ site.Title }}" class="hero-logo">
           {{ end }}
         </div>
       </div>

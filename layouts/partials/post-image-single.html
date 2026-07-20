@@ -1,5 +1,16 @@
 {{ $image := .Params.image }}
-{{ if not $image }}
+{{ if $image }}
+  {{ $staticPath := printf "static/%s" $image }}
+  {{ if (fileExists $staticPath) }}
+    {{ $image = $image | relURL }}
+  {{ else }}
+    {{ with .Resources.GetMatch (path.Base $image) }}
+      {{ $image = .RelPermalink }}
+    {{ else }}
+      {{ $image = $image | relURL }}
+    {{ end }}
+  {{ end }}
+{{ else }}
   {{ $titleSlug := .Title | urlize }}
   {{ $imageExtensions := slice ".png" ".jpg" ".jpeg" ".webp" }}
   {{ range $imageExtensions }}
@@ -13,7 +24,7 @@
 {{ end }}
 {{ if $image }}
 <div class="post-image-single">
-  <img src="{{ $image | relURL }}" alt="{{ if .Description }}{{ .Description }}{{ else }}{{ .Title }} - Featured image{{ end }}" loading="eager" width="1200" height="630">
+  <img src="{{ $image }}" alt="{{ if .Description }}{{ .Description }}{{ else }}{{ .Title }} - Featured image{{ end }}" loading="eager" width="1200" height="630">
 </div>
 {{ end }}
 

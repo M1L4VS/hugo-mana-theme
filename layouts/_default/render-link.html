@@ -1,0 +1,17 @@
+{{- $url := .Destination -}}
+{{- $text := .Text -}}
+{{- $title := .Title -}}
+
+{{- if strings.Contains $url "github.com" -}}
+  <a href="{{ $url }}"{{- with $title }} title="{{ . }}"{{- end -}}>
+    <i class="icon fa-github"></i>&nbsp;{{- $text | safeHTML -}}
+  </a>
+{{- else if strings.Contains $url "microsoft.com" -}}
+  <a href="{{ $url }}"{{- with $title }} title="{{ . }}"{{- end -}}>
+    <i class="icon fa-windows"></i>&nbsp;{{- $text | safeHTML -}}
+  </a>
+{{- else -}}
+  <a href="{{ $url }}"{{- with $title }} title="{{ . }}"{{- end -}}>
+    {{- $text | safeHTML -}}
+  </a>
+{{- end -}}
